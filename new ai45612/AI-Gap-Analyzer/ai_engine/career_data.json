@@ -1,0 +1,42 @@
+
+{
+    "Data Analyst": [
+        "python",
+        "sql",
+        "excel",
+        "power bi",
+        "statistics",
+        "tableau",
+        "data visualization"
+    ],
+
+    "Web Developer": [
+        "html",
+        "css",
+        "javascript",
+        "python",
+        "react",
+        "git",
+        "responsive design"
+    ],
+
+    "Software Developer": [
+        "python",
+        "java",
+        "data structures",
+        "algorithms",
+        "sql",
+        "git",
+        "oops"
+    ],
+
+    "AI/ML Engineer": [
+        "python",
+        "machine learning",
+        "deep learning",
+        "statistics",
+        "pandas",
+        "numpy",
+        "tensorflow"
+    ]
+}

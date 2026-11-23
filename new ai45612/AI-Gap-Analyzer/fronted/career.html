@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Gap Analysis | AI Gap Analyzer</title>
+
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            AI <span>Gap Analyzer</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="career.html">Career Analysis</a>
+            <a href="job_analysis.html">Job Analysis</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Page Heading -->
+    <section class="career-header">
+
+        <p class="tagline">PLAN YOUR CAREER JOURNEY</p>
+
+        <h1>Discover Your Career Skill Gaps</h1>
+
+        <p>
+            Upload your resume or enter your skills manually.
+            Our AI will help identify the skills you need
+            for your dream career.
+        </p>
+
+    </section>
+
+
+    <!-- Career Analysis Form -->
+    <section class="career-section">
+
+        <form id="careerForm" enctype="multipart/form-data">
+
+            <!-- Resume Upload -->
+            <div class="form-card">
+
+                <h2>1. Upload Your Resume</h2>
+
+                <p>Upload your resume in PDF format.</p>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,application/pdf"
+                >
+
+                <p class="form-note">
+                    PDF files only. You can also enter your skills manually.
+                </p>
+
+            </div>
+
+
+            <!-- Career Selection -->
+            <div class="form-card">
+
+                <h2>2. Select Your Desired Career</h2>
+
+                <p>Choose the career you want to pursue.</p>
+
+                <select id="career" name="career" required>
+
+                    <option value="">-- Select a Career --</option>
+
+                    <option value="Data Analyst">
+                        Data Analyst
+                    </option>
+
+                    <option value="Web Developer">
+                        Web Developer
+                    </option>
+
+                    <option value="Software Developer">
+                        Software Developer
+                    </option>
+
+                    <option value="AI/ML Engineer">
+                        AI/ML Engineer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Manual Skills -->
+            <div class="form-card">
+
+                <h2>3. Enter Your Current Skills</h2>
+
+                <p>
+                    If you don't have a resume, enter your skills
+                    separated by commas.
+                </p>
+
+                <textarea
+                    id="skills"
+                    name="skills"
+                    rows="5"
+                    placeholder="Example: Python, Java, SQL, HTML, CSS, Excel"
+                ></textarea>
+
+            </div>
+
+
+            <!-- Submit Button -->
+            <div class="analyze-container">
+
+                <button
+                    type="submit"
+                    id="analyzeBtn"
+                    class="primary-btn"
+                >
+                    Analyze My Skills →
+                </button>
+
+                <p
+                    id="careerMessage"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+            </div>
+
+        </form>
+
+
+        <!-- =====================================
+             CAREER ANALYSIS DASHBOARD
+        ====================================== -->
+
+        <section id="analysisResults" class="dashboard" hidden>
+
+
+            <!-- Dashboard Heading -->
+            <div class="dashboard-header">
+
+                <div>
+
+                    <p class="tagline">
+                        YOUR PERSONAL CAREER REPORT
+                    </p>
+
+                    <h2>Career Skill Gap Dashboard</h2>
+
+                    <p>
+                        Here is your personalized skill analysis.
+                    </p>
+
+                </div>
+
+                <div class="dashboard-badge">
+                    ✓ Analysis Complete
+                </div>
+
+            </div>
+
+
+            <!-- Selected Career -->
+            <div class="dashboard-welcome">
+
+                <div>
+
+                    <span class="small-label">
+                        SELECTED CAREER
+                    </span>
+
+                    <h2 id="resultCareer">
+                        Career Name
+                    </h2>
+
+                    <p>
+                        Track your progress towards your career goal.
+                    </p>
+
+                </div>
+
+                <div class="career-icon">
+                    🎯
+                </div>
+
+            </div>
+
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+
+
+                <!-- Total Skills -->
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📊
+                    </div>
+
+                    <p>Total Required Skills</p>
+
+                    <h2 id="totalSkills">0</h2>
+
+                    <span>
+                        Skills for your career
+                    </span>
+
+                </div>
+
+
+                <!-- Matched Skills -->
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <p>Matched Skills</p>
+
+                    <h2 id="matchedCount">0</h2>
+
+                    <span>
+                        Skills you already have
+                    </span>
+
+                </div>
+
+
+                <!-- Missing Skills -->
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ⚡
+                    </div>
+
+                    <p>Missing Skills</p>
+
+                    <h2 id="missingCount">0</h2>
+
+                    <span>
+                        Skills to improve
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Overall Match Score -->
+            <div class="dashboard-card score-card">
+
+                <div>
+
+                    <span class="small-label">
+                        YOUR CAREER READINESS
+                    </span>
+
+                    <h2>Overall Skill Match</h2>
+
+                    <p>
+                        This score represents how many required career
+                        skills match your current skills.
+                    </p>
+
+                </div>
+
+
+                <!-- Circular Progress -->
+                <div
+                    class="progress-circle"
+                    id="progressCircle"
+                >
+
+                    <div class="progress-inner">
+
+                        <h2 id="matchPercentage">
+                            0%
+                        </h2>
+
+                        <span>
+                            Skill Match
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skills Comparison -->
+            <div class="skills-grid">
+
+
+                <!-- Matched Skills -->
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <h3>✓ Matched Skills</h3>
+
+                        <span
+                            class="count green-text"
+                            id="matchedLabel"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        Skills detected in your resume or manual input.
+                    </p>
+
+                    <ul
+                        id="matchedSkills"
+                        class="skill-list matched-list"
+                    ></ul>
+
+                </div>
+
+
+                <!-- Missing Skills -->
+                <div class="dashboard-card">
+
+                    <div class="card-title">
+
+                        <h3>⚡ Missing Skills</h3>
+
+                        <span
+                            class="count orange-text"
+                            id="missingLabel"
+                        >
+                            0
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        Skills you should learn to improve your career readiness.
+                    </p>
+
+                    <ul
+                        id="missingSkills"
+                        class="skill-list missing-list"
+                    ></ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- Learning Recommendations -->
+            <div class="dashboard-card recommendation-card">
+
+                <div class="card-title">
+
+                    <h3>🚀 Your Learning Roadmap</h3>
+
+                    <span class="roadmap-label">
+                        NEXT STEPS
+                    </span>
+
+                </div>
+
+                <p class="card-description">
+                    Follow these recommendations to improve your skills.
+                </p>
+
+                <ul
+                    id="recommendations"
+                    class="recommendation-list"
+                ></ul>
+
+            </div>
+
+
+            <!-- Dashboard Footer -->
+            <div class="dashboard-footer">
+
+                <p>
+                    AI Gap Analyzer | Smart Skills, Better Careers
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.print()"
+                    class="print-btn"
+                >
+                    🖨 Print Report
+                </button>
+
+            </div>
+
+
+        </section>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 AI Gap Analyzer | Smart Skills, Better Careers
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="static/js/script.js"></script>
+
+</body>
+
+</html>
